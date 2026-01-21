@@ -15,7 +15,7 @@ Interactive applications built with R Shiny, running entirely in your browser vi
 
 A demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.
 
-[Launch App](apps/sliders/){.btn .btn-primary}
+[Launch App](apps/sliders/index.qmd){.btn .btn-primary}
 :::
 :::
 

@@ -2,6 +2,9 @@ project:
   type: website
   output-dir: docs
 
+filters:
+  - shinylive
+
 website:
   title: "LittleMonkeyLab Shiny Apps"
   navbar:
@@ -10,7 +13,7 @@ website:
         text: Home
       - text: Apps
         menu:
-          - href: apps/sliders/
+          - href: apps/sliders/index.qmd
             text: Sliders Demo
       - text: Slides
         menu:
