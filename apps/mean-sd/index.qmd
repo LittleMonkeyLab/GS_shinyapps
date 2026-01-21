@@ -6,7 +6,7 @@ format: html
 :::{.column-screen-inset}
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 650
+#| viewerHeight: 950
 
 library(shiny)
 library(bslib)
