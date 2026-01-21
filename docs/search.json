@@ -11,14 +11,14 @@
     "href": "index.html",
     "title": "LittleMonkeyLab Shiny Apps",
     "section": "",
-    "text": "Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).\n\n\n\n\nA demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.\nLaunch App"
+    "text": "Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).\n\n\n\n\nA demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.\nLaunch App\n\n\n\n\n\nEnter a target mean and standard deviation to see what 5 or 10 data points with those properties might look like. Great for building intuition about variability.\nLaunch App"
   },
   {
     "objectID": "index.html#shiny-apps",
     "href": "index.html#shiny-apps",
     "title": "LittleMonkeyLab Shiny Apps",
     "section": "",
-    "text": "Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).\n\n\n\n\nA demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.\nLaunch App"
+    "text": "Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).\n\n\n\n\nA demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.\nLaunch App\n\n\n\n\n\nEnter a target mean and standard deviation to see what 5 or 10 data points with those properties might look like. Great for building intuition about variability.\nLaunch App"
   },
   {
     "objectID": "index.html#lecture-slides",
@@ -33,5 +33,12 @@
     "title": "LittleMonkeyLab Shiny Apps",
     "section": "External Resources",
     "text": "External Resources\nLinks to apps hosted on shinyapps.io and other resources.\n\n\n\nshinyapps.io\nServer-hosted Shiny applications for more complex use cases.\nVisit shinyapps.io"
+  },
+  {
+    "objectID": "apps/mean-sd/index.html",
+    "href": "apps/mean-sd/index.html",
+    "title": "Mean & SD Explorer",
+    "section": "",
+    "text": "#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 650\n\nlibrary(shiny)\nlibrary(bslib)\n\nui &lt;- page_sidebar(\n  title = \"Mean & SD Explorer\",\n\n  sidebar = sidebar(\n    numericInput(\n      \"target_mean\",\n      \"Target Mean:\",\n      value = 50,\n      step = 1\n    ),\n    numericInput(\n      \"target_sd\",\n      \"Target SD:\",\n      value = 10,\n      min = 0.1,\n      step = 1\n    ),\n    radioButtons(\n      \"n\",\n      \"Sample Size:\",\n      choices = c(\"5\" = 5, \"10\" = 10),\n      selected = 5\n    ),\n    actionButton(\"generate\", \"Generate New Data\", class = \"btn-primary\"),\n    hr(),\n    p(\"This app generates random numbers with approximately your specified mean and standard deviation.\"),\n    p(\"Click the button to see different samples - notice how the actual values vary around the target!\")\n  ),\n\n  card(\n    card_header(\"Generated Data\"),\n    tableOutput(\"data_table\")\n  ),\n\n  layout_columns(\n    card(\n      card_header(\"Summary Statistics\"),\n      tableOutput(\"stats_table\")\n    ),\n    card(\n      card_header(\"Visualisation\"),\n      plotOutput(\"dot_plot\", height = \"200px\")\n    )\n  )\n)\n\nserver &lt;- function(input, output, session) {\n\n  # Generate data when button is clicked\n  data &lt;- reactiveVal(NULL)\n\n  observeEvent(input$generate, {\n    n &lt;- as.integer(input$n)\n    values &lt;- rnorm(n, mean = input$target_mean, sd = input$target_sd)\n    # Round to 1 decimal place for readability\n    values &lt;- round(values, 1)\n    data(values)\n  }, ignoreNULL = FALSE)\n\n  # Also generate on input changes\n  observeEvent(c(input$target_mean, input$target_sd, input$n), {\n    n &lt;- as.integer(input$n)\n    values &lt;- rnorm(n, mean = input$target_mean, sd = input$target_sd)\n    values &lt;- round(values, 1)\n    data(values)\n  })\n\n  output$data_table &lt;- renderTable({\n    req(data())\n    df &lt;- data.frame(\n      Observation = paste0(\"Value \", seq_along(data())),\n      Value = data()\n    )\n    df\n  }, striped = TRUE, hover = TRUE, width = \"100%\")\n\n  output$stats_table &lt;- renderTable({\n    req(data())\n    actual_mean &lt;- mean(data())\n    actual_sd &lt;- sd(data())\n\n    data.frame(\n      Statistic = c(\"Target Mean\", \"Actual Mean\", \"Target SD\", \"Actual SD\"),\n      Value = c(\n        round(input$target_mean, 2),\n        round(actual_mean, 2),\n        round(input$target_sd, 2),\n        round(actual_sd, 2)\n      )\n    )\n  }, striped = TRUE, hover = TRUE, width = \"100%\")\n\n  output$dot_plot &lt;- renderPlot({\n    req(data())\n    values &lt;- data()\n    actual_mean &lt;- mean(values)\n\n    # Set up plot range\n    plot_range &lt;- range(c(values, input$target_mean - input$target_sd * 2,\n                          input$target_mean + input$target_sd * 2))\n\n    par(mar = c(4, 2, 2, 2))\n\n    # Create dot plot\n    plot(values, rep(1, length(values)),\n         xlim = plot_range,\n         ylim = c(0.5, 1.5),\n         pch = 19, cex = 2, col = \"#0d6efd\",\n         xlab = \"Value\", ylab = \"\",\n         yaxt = \"n\", main = \"\")\n\n    # Add mean line\n    abline(v = actual_mean, col = \"#dc3545\", lwd = 2, lty = 2)\n\n    # Add target mean line\n    abline(v = input$target_mean, col = \"#198754\", lwd = 2)\n\n    # Legend\n    legend(\"topright\",\n           legend = c(\"Data points\", \"Actual mean\", \"Target mean\"),\n           col = c(\"#0d6efd\", \"#dc3545\", \"#198754\"),\n           pch = c(19, NA, NA),\n           lty = c(NA, 2, 1),\n           lwd = c(NA, 2, 2),\n           cex = 0.8,\n           bg = \"white\")\n  })\n}\n\nshinyApp(ui, server)"
   }
 ]

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sliders Demo – LittleMonkeyLab Shiny Apps</title>
+<title>Mean &amp; SD Explorer – LittleMonkeyLab Shiny Apps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -144,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Sliders Demo</h1>
+<h1 class="title">Mean &amp; SD Explorer</h1>
 </div>
 
 
@@ -165,110 +165,140 @@ ul.task-list li input[type="checkbox"] {
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 600
+#| viewerHeight: 650
 
 library(shiny)
 library(bslib)
 
-# Define UI for slider demo app ----
 ui &lt;- page_sidebar(
+  title = "Mean &amp; SD Explorer",
 
-  # App title ----
-  title = "Sliders",
-
-  # Sidebar panel for inputs ----
   sidebar = sidebar(
-
-    # Input: Simple integer interval ----
-    sliderInput(
-      "integer",
-      "Integer:",
-      min = 0,
-      max = 1000,
-      value = 500
+    numericInput(
+      "target_mean",
+      "Target Mean:",
+      value = 50,
+      step = 1
     ),
-
-    # Input: Decimal interval with step value ----
-    sliderInput(
-      "decimal",
-      "Decimal:",
-      min = 0,
-      max = 1,
-      value = 0.5,
-      step = 0.1
+    numericInput(
+      "target_sd",
+      "Target SD:",
+      value = 10,
+      min = 0.1,
+      step = 1
     ),
-
-    # Input: Specification of range within an interval ----
-    sliderInput(
-      "range",
-      "Range:",
-      min = 1,
-      max = 1000,
-      value = c(200, 500)
+    radioButtons(
+      "n",
+      "Sample Size:",
+      choices = c("5" = 5, "10" = 10),
+      selected = 5
     ),
-
-    # Input: Custom currency format for with basic animation ----
-    sliderInput(
-      "format",
-      "Custom Format:",
-      min = 0,
-      max = 10000,
-      value = 0,
-      step = 2500,
-      pre = "$",
-      sep = ",",
-      animate = TRUE
-    ),
-
-    # Input: Animation with custom interval (in ms) ----
-    # to control speed, plus looping
-    sliderInput(
-      "animation",
-      "Looping Animation:",
-      min = 1,
-      max = 2000,
-      value = 1,
-      step = 10,
-      animate =
-        animationOptions(interval = 300, loop = TRUE)
-    )
+    actionButton("generate", "Generate New Data", class = "btn-primary"),
+    hr(),
+    p("This app generates random numbers with approximately your specified mean and standard deviation."),
+    p("Click the button to see different samples - notice how the actual values vary around the target!")
   ),
 
-  # Output: Table summarizing the values entered ----
-  tableOutput("values")
+  card(
+    card_header("Generated Data"),
+    tableOutput("data_table")
+  ),
+
+  layout_columns(
+    card(
+      card_header("Summary Statistics"),
+      tableOutput("stats_table")
+    ),
+    card(
+      card_header("Visualisation"),
+      plotOutput("dot_plot", height = "200px")
+    )
+  )
 )
 
-# Define server logic for slider examples ----
-server &lt;- function(input, output) {
+server &lt;- function(input, output, session) {
 
-  # Reactive expression to create data frame of all input values ----
-  sliderValues &lt;- reactive({
-    data.frame(
-      Name = c(
-        "Integer",
-        "Decimal",
-        "Range",
-        "Custom Format",
-        "Animation"
-      ),
-      Value = as.character(c(
-        input$integer,
-        input$decimal,
-        paste(input$range, collapse = " "),
-        input$format,
-        input$animation
-      )),
-      stringsAsFactors = FALSE
-    )
+  # Generate data when button is clicked
+  data &lt;- reactiveVal(NULL)
+
+  observeEvent(input$generate, {
+    n &lt;- as.integer(input$n)
+    values &lt;- rnorm(n, mean = input$target_mean, sd = input$target_sd)
+    # Round to 1 decimal place for readability
+    values &lt;- round(values, 1)
+    data(values)
+  }, ignoreNULL = FALSE)
+
+  # Also generate on input changes
+  observeEvent(c(input$target_mean, input$target_sd, input$n), {
+    n &lt;- as.integer(input$n)
+    values &lt;- rnorm(n, mean = input$target_mean, sd = input$target_sd)
+    values &lt;- round(values, 1)
+    data(values)
   })
 
-  # Show the values in an HTML table ----
-  output$values &lt;- renderTable({
-    sliderValues()
+  output$data_table &lt;- renderTable({
+    req(data())
+    df &lt;- data.frame(
+      Observation = paste0("Value ", seq_along(data())),
+      Value = data()
+    )
+    df
+  }, striped = TRUE, hover = TRUE, width = "100%")
+
+  output$stats_table &lt;- renderTable({
+    req(data())
+    actual_mean &lt;- mean(data())
+    actual_sd &lt;- sd(data())
+
+    data.frame(
+      Statistic = c("Target Mean", "Actual Mean", "Target SD", "Actual SD"),
+      Value = c(
+        round(input$target_mean, 2),
+        round(actual_mean, 2),
+        round(input$target_sd, 2),
+        round(actual_sd, 2)
+      )
+    )
+  }, striped = TRUE, hover = TRUE, width = "100%")
+
+  output$dot_plot &lt;- renderPlot({
+    req(data())
+    values &lt;- data()
+    actual_mean &lt;- mean(values)
+
+    # Set up plot range
+    plot_range &lt;- range(c(values, input$target_mean - input$target_sd * 2,
+                          input$target_mean + input$target_sd * 2))
+
+    par(mar = c(4, 2, 2, 2))
+
+    # Create dot plot
+    plot(values, rep(1, length(values)),
+         xlim = plot_range,
+         ylim = c(0.5, 1.5),
+         pch = 19, cex = 2, col = "#0d6efd",
+         xlab = "Value", ylab = "",
+         yaxt = "n", main = "")
+
+    # Add mean line
+    abline(v = actual_mean, col = "#dc3545", lwd = 2, lty = 2)
+
+    # Add target mean line
+    abline(v = input$target_mean, col = "#198754", lwd = 2)
+
+    # Legend
+    legend("topright",
+           legend = c("Data points", "Actual mean", "Target mean"),
+           col = c("#0d6efd", "#dc3545", "#198754"),
+           pch = c(19, NA, NA),
+           lty = c(NA, 2, 1),
+           lwd = c(NA, 2, 2),
+           cex = 0.8,
+           bg = "white")
   })
 }
 
-# Create Shiny app ----
 shinyApp(ui, server)</code></pre>
 
 

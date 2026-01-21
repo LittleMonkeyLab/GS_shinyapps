@@ -19,6 +19,16 @@ A demonstration of various slider input types in Shiny, including integers, deci
 :::
 :::
 
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4}
+::: {.card}
+### Mean & SD Explorer
+
+Enter a target mean and standard deviation to see what 5 or 10 data points with those properties might look like. Great for building intuition about variability.
+
+[Launch App](apps/mean-sd/index.qmd){.btn .btn-primary}
+:::
+:::
+
 :::
 
 ## Lecture Slides

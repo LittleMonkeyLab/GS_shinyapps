@@ -1,0 +1,143 @@
+---
+title: "Mean & SD Explorer"
+format: html
+---
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 650
+
+library(shiny)
+library(bslib)
+
+ui <- page_sidebar(
+  title = "Mean & SD Explorer",
+
+  sidebar = sidebar(
+    numericInput(
+      "target_mean",
+      "Target Mean:",
+      value = 50,
+      step = 1
+    ),
+    numericInput(
+      "target_sd",
+      "Target SD:",
+      value = 10,
+      min = 0.1,
+      step = 1
+    ),
+    radioButtons(
+      "n",
+      "Sample Size:",
+      choices = c("5" = 5, "10" = 10),
+      selected = 5
+    ),
+    actionButton("generate", "Generate New Data", class = "btn-primary"),
+    hr(),
+    p("This app generates random numbers with approximately your specified mean and standard deviation."),
+    p("Click the button to see different samples - notice how the actual values vary around the target!")
+  ),
+
+  card(
+    card_header("Generated Data"),
+    tableOutput("data_table")
+  ),
+
+  layout_columns(
+    card(
+      card_header("Summary Statistics"),
+      tableOutput("stats_table")
+    ),
+    card(
+      card_header("Visualisation"),
+      plotOutput("dot_plot", height = "200px")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+
+  # Generate data when button is clicked
+  data <- reactiveVal(NULL)
+
+  observeEvent(input$generate, {
+    n <- as.integer(input$n)
+    values <- rnorm(n, mean = input$target_mean, sd = input$target_sd)
+    # Round to 1 decimal place for readability
+    values <- round(values, 1)
+    data(values)
+  }, ignoreNULL = FALSE)
+
+  # Also generate on input changes
+  observeEvent(c(input$target_mean, input$target_sd, input$n), {
+    n <- as.integer(input$n)
+    values <- rnorm(n, mean = input$target_mean, sd = input$target_sd)
+    values <- round(values, 1)
+    data(values)
+  })
+
+  output$data_table <- renderTable({
+    req(data())
+    df <- data.frame(
+      Observation = paste0("Value ", seq_along(data())),
+      Value = data()
+    )
+    df
+  }, striped = TRUE, hover = TRUE, width = "100%")
+
+  output$stats_table <- renderTable({
+    req(data())
+    actual_mean <- mean(data())
+    actual_sd <- sd(data())
+
+    data.frame(
+      Statistic = c("Target Mean", "Actual Mean", "Target SD", "Actual SD"),
+      Value = c(
+        round(input$target_mean, 2),
+        round(actual_mean, 2),
+        round(input$target_sd, 2),
+        round(actual_sd, 2)
+      )
+    )
+  }, striped = TRUE, hover = TRUE, width = "100%")
+
+  output$dot_plot <- renderPlot({
+    req(data())
+    values <- data()
+    actual_mean <- mean(values)
+
+    # Set up plot range
+    plot_range <- range(c(values, input$target_mean - input$target_sd * 2,
+                          input$target_mean + input$target_sd * 2))
+
+    par(mar = c(4, 2, 2, 2))
+
+    # Create dot plot
+    plot(values, rep(1, length(values)),
+         xlim = plot_range,
+         ylim = c(0.5, 1.5),
+         pch = 19, cex = 2, col = "#0d6efd",
+         xlab = "Value", ylab = "",
+         yaxt = "n", main = "")
+
+    # Add mean line
+    abline(v = actual_mean, col = "#dc3545", lwd = 2, lty = 2)
+
+    # Add target mean line
+    abline(v = input$target_mean, col = "#198754", lwd = 2)
+
+    # Legend
+    legend("topright",
+           legend = c("Data points", "Actual mean", "Target mean"),
+           col = c("#0d6efd", "#dc3545", "#198754"),
+           pch = c(19, NA, NA),
+           lty = c(NA, 2, 1),
+           lwd = c(NA, 2, 2),
+           cex = 0.8,
+           bg = "white")
+  })
+}
+
+shinyApp(ui, server)
+```
