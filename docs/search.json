@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LittleMonkeyLab Shiny Apps",
+    "section": "",
+    "text": "Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).\n\n\n\n\nA demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.\nLaunch App"
+  },
+  {
+    "objectID": "index.html#shiny-apps",
+    "href": "index.html#shiny-apps",
+    "title": "LittleMonkeyLab Shiny Apps",
+    "section": "",
+    "text": "Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).\n\n\n\n\nA demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.\nLaunch App"
+  },
+  {
+    "objectID": "index.html#lecture-slides",
+    "href": "index.html#lecture-slides",
+    "title": "LittleMonkeyLab Shiny Apps",
+    "section": "Lecture Slides",
+    "text": "Lecture Slides\nPresentation slides for courses and workshops.\n\n\n\nComing Soon\nSlides will be added here as they are developed."
+  },
+  {
+    "objectID": "index.html#external-resources",
+    "href": "index.html#external-resources",
+    "title": "LittleMonkeyLab Shiny Apps",
+    "section": "External Resources",
+    "text": "External Resources\nLinks to apps hosted on shinyapps.io and other resources.\n\n\n\nshinyapps.io\nServer-hosted Shiny applications for more complex use cases.\nVisit shinyapps.io"
+  }
+]

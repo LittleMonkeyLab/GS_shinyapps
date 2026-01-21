@@ -1,0 +1,56 @@
+---
+title: "LittleMonkeyLab Shiny Apps"
+subtitle: "Interactive R Applications for Teaching & Research"
+---
+
+## Shiny Apps
+
+Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4}
+::: {.card}
+### Sliders Demo
+
+A demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.
+
+[Launch App](apps/sliders/){.btn .btn-primary}
+:::
+:::
+
+:::
+
+## Lecture Slides
+
+Presentation slides for courses and workshops.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4}
+::: {.card .text-muted}
+### Coming Soon
+
+Slides will be added here as they are developed.
+:::
+:::
+
+:::
+
+## External Resources
+
+Links to apps hosted on shinyapps.io and other resources.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4}
+::: {.card}
+### shinyapps.io
+
+Server-hosted Shiny applications for more complex use cases.
+
+[Visit shinyapps.io](https://littlemonkeylab.shinyapps.io/){.btn .btn-outline-primary}
+:::
+:::
+
+:::
