@@ -19,11 +19,9 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Install R packages
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::shinylive
+      - name: Install R shinylive package
+        run: |
+          Rscript -e 'install.packages("shinylive", repos = c("https://posit-dev.r-universe.dev", "https://cloud.r-project.org"))'
 
       - name: Build Quarto site
         run: quarto render
