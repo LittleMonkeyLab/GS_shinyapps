@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>LittleMonkeyLab Shiny Apps</title>
+<title>Data Explorer – LittleMonkeyLab Shiny Apps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,29 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="../..">
+<script src="../../site_libs/quarto-contrib/shinylive-0.9.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.9.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.9.1/shinylive/shinylive.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -80,9 +85,9 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">LittleMonkeyLab Shiny Apps</span>
     </a>
   </div>
@@ -93,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -102,15 +107,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-apps">    
         <li>
-    <a class="dropdown-item" href="./apps/sliders/index.html">
+    <a class="dropdown-item" href="../../apps/sliders/index.html">
  <span class="dropdown-text">Sliders Demo</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./apps/mean-sd/index.html">
+    <a class="dropdown-item" href="../../apps/mean-sd/index.html">
  <span class="dropdown-text">Mean &amp; SD Explorer</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./apps/data-explorer/index.html">
+    <a class="dropdown-item" href="../../apps/data-explorer/index.html">
  <span class="dropdown-text">Data Explorer</span></a>
   </li>  
     </ul>
@@ -121,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-slides">    
         <li>
-    <a class="dropdown-item" href="./#">
+    <a class="dropdown-item" href="../../#">
  <span class="dropdown-text">(Coming soon)</span></a>
   </li>  
     </ul>
@@ -139,12 +144,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">LittleMonkeyLab Shiny Apps</h1>
-<p class="subtitle lead">Interactive R Applications for Teaching &amp; Research</p>
+<h1 class="title">Data Explorer</h1>
 </div>
 
 
@@ -161,60 +165,196 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="shiny-apps" class="level2">
-<h2 class="anchored" data-anchor-id="shiny-apps">Shiny Apps</h2>
-<p>Interactive applications built with R Shiny, running entirely in your browser via WebR (shinylive).</p>
-<div class="grid">
-<div class="g-col-12 g-col-md-6 g-col-lg-4">
-<section id="sliders-demo" class="level3 card">
-<h3 class="anchored" data-anchor-id="sliders-demo">Sliders Demo</h3>
-<p>A demonstration of various slider input types in Shiny, including integers, decimals, ranges, and animated sliders.</p>
-<p><a href="./apps/sliders/index.html" class="btn btn-primary">Launch App</a></p>
-</section>
-</div>
-<div class="g-col-12 g-col-md-6 g-col-lg-4">
-<section id="mean-sd-explorer" class="level3 card">
-<h3 class="anchored" data-anchor-id="mean-sd-explorer">Mean &amp; SD Explorer</h3>
-<p>Enter a target mean and standard deviation to see what 5 or 10 data points with those properties might look like. Great for building intuition about variability.</p>
-<p><a href="./apps/mean-sd/index.html" class="btn btn-primary">Launch App</a></p>
-</section>
-</div>
-<div class="g-col-12 g-col-md-6 g-col-lg-4">
-<section id="data-explorer" class="level3 card">
-<h3 class="anchored" data-anchor-id="data-explorer">Data Explorer</h3>
-<p>Explore an embedded dataset with interactive plots and summary statistics. View data tables, scatter plots, box plots, and grouped summaries.</p>
-<p><a href="./apps/data-explorer/index.html" class="btn btn-primary">Launch App</a></p>
-</section>
-</div>
-</div>
-</section>
-<section id="lecture-slides" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-slides">Lecture Slides</h2>
-<p>Presentation slides for courses and workshops.</p>
-<div class="grid">
-<div class="g-col-12 g-col-md-6 g-col-lg-4">
-<section id="coming-soon" class="level3 card text-muted">
-<h3 class="anchored" data-anchor-id="coming-soon">Coming Soon</h3>
-<p>Slides will be added here as they are developed.</p>
-</section>
-</div>
-</div>
-</section>
-<section id="external-resources" class="level2">
-<h2 class="anchored" data-anchor-id="external-resources">External Resources</h2>
-<p>Links to apps hosted on shinyapps.io and other resources.</p>
-<div class="grid">
-<div class="g-col-12 g-col-md-6 g-col-lg-4">
-<section id="shinyapps.io" class="level3 card">
-<h3 class="anchored" data-anchor-id="shinyapps.io">shinyapps.io</h3>
-<p>Server-hosted Shiny applications for more complex use cases.</p>
-<p><a href="https://littlemonkeylab.shinyapps.io/" class="btn btn-outline-primary">Visit shinyapps.io</a></p>
-</section>
-</div>
+<div class="column-screen-inset">
+<pre class="shinylive-r" data-engine="r"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
+#| viewerHeight: 700
+
+## file: sample_data.csv
+id,age,gender,score,group,reaction_time
+1,22,Female,78,Control,342
+2,25,Male,85,Treatment,298
+3,19,Female,72,Control,367
+4,31,Male,91,Treatment,275
+5,28,Female,88,Treatment,289
+6,24,Male,69,Control,401
+7,21,Female,82,Treatment,312
+8,27,Male,75,Control,356
+9,23,Female,94,Treatment,267
+10,26,Male,71,Control,389
+11,20,Female,86,Treatment,295
+12,29,Male,77,Control,348
+13,22,Female,89,Treatment,281
+14,25,Male,73,Control,372
+15,24,Female,92,Treatment,269
+16,30,Male,68,Control,412
+17,21,Female,84,Treatment,303
+18,28,Male,79,Control,339
+19,23,Female,96,Treatment,258
+20,26,Male,74,Control,365
+
+## file: app.R
+library(shiny)
+library(bslib)
+
+# Load the embedded data
+data &lt;- read.csv("sample_data.csv")
+
+ui &lt;- page_sidebar(
+  title = "Data Explorer",
+
+  sidebar = sidebar(
+    width = 300,
+    selectInput(
+      "x_var",
+      "X Variable:",
+      choices = names(data),
+      selected = "age"
+    ),
+    selectInput(
+      "y_var",
+      "Y Variable:",
+      choices = names(data),
+      selected = "score"
+    ),
+    selectInput(
+      "colour_var",
+      "Colour by:",
+      choices = c("None", names(data)),
+      selected = "group"
+    ),
+    hr(),
+    selectInput(
+      "summary_var",
+      "Summarise Variable:",
+      choices = names(data)[sapply(data, is.numeric)],
+      selected = "score"
+    ),
+    selectInput(
+      "group_var",
+      "Group by:",
+      choices = c("None", names(data)),
+      selected = "group"
+    ),
+    hr(),
+    p("This app loads an embedded CSV dataset and lets you explore it interactively.")
+  ),
+
+  navset_card_tab(
+    nav_panel(
+      "Data",
+      tableOutput("data_table")
+    ),
+    nav_panel(
+      "Plot",
+      plotOutput("scatter_plot", height = "400px")
+    ),
+    nav_panel(
+      "Summary",
+      tableOutput("summary_table")
+    )
+  )
+)
+
+server &lt;- function(input, output, session) {
+
+  output$data_table &lt;- renderTable({
+    data
+  }, striped = TRUE, hover = TRUE, width = "100%")
+
+  output$scatter_plot &lt;- renderPlot({
+    x &lt;- data[[input$x_var]]
+    y &lt;- data[[input$y_var]]
+
+    # Handle colour
+    if (input$colour_var == "None") {
+      col &lt;- "#0d6efd"
+    } else {
+      colour_data &lt;- data[[input$colour_var]]
+      if (is.numeric(colour_data)) {
+        col &lt;- colorRampPalette(c("#0d6efd", "#dc3545"))(100)[
+          cut(colour_data, breaks = 100, labels = FALSE)
+        ]
+      } else {
+        colour_levels &lt;- as.factor(colour_data)
+        colours &lt;- c("#0d6efd", "#dc3545", "#198754", "#ffc107", "#6f42c1")
+        col &lt;- colours[as.numeric(colour_levels)]
+      }
+    }
+
+    par(mar = c(5, 5, 3, 2))
+
+    # Determine plot type based on variable types
+    x_numeric &lt;- is.numeric(x)
+    y_numeric &lt;- is.numeric(y)
+
+    if (x_numeric &amp;&amp; y_numeric) {
+      plot(x, y,
+           pch = 19, cex = 2, col = col,
+           xlab = input$x_var, ylab = input$y_var,
+           main = paste(input$y_var, "vs", input$x_var),
+           cex.lab = 1.3, cex.main = 1.5)
+
+      # Add legend if coloured
+      if (input$colour_var != "None" &amp;&amp; !is.numeric(data[[input$colour_var]])) {
+        legend("topright",
+               legend = levels(as.factor(data[[input$colour_var]])),
+               col = c("#0d6efd", "#dc3545", "#198754", "#ffc107", "#6f42c1")[1:length(levels(as.factor(data[[input$colour_var]])))],
+               pch = 19, cex = 1.2, bg = "white")
+      }
+    } else if (!x_numeric &amp;&amp; y_numeric) {
+      boxplot(y ~ x, data = data.frame(x = x, y = y),
+              col = c("#0d6efd", "#dc3545", "#198754", "#ffc107"),
+              xlab = input$x_var, ylab = input$y_var,
+              main = paste(input$y_var, "by", input$x_var),
+              cex.lab = 1.3, cex.main = 1.5)
+    } else {
+      plot(as.factor(x), as.factor(y),
+           xlab = input$x_var, ylab = input$y_var,
+           main = paste(input$y_var, "vs", input$x_var),
+           cex.lab = 1.3, cex.main = 1.5)
+    }
+  })
+
+  output$summary_table &lt;- renderTable({
+    var_data &lt;- data[[input$summary_var]]
+
+    if (input$group_var == "None") {
+      data.frame(
+        Statistic = c("N", "Mean", "SD", "Min", "Max", "Median"),
+        Value = c(
+          length(var_data),
+          round(mean(var_data, na.rm = TRUE), 2),
+          round(sd(var_data, na.rm = TRUE), 2),
+          round(min(var_data, na.rm = TRUE), 2),
+          round(max(var_data, na.rm = TRUE), 2),
+          round(median(var_data, na.rm = TRUE), 2)
+        )
+      )
+    } else {
+      groups &lt;- split(var_data, data[[input$group_var]])
+      do.call(rbind, lapply(names(groups), function(g) {
+        grp &lt;- groups[[g]]
+        data.frame(
+          Group = g,
+          N = length(grp),
+          Mean = round(mean(grp, na.rm = TRUE), 2),
+          SD = round(sd(grp, na.rm = TRUE), 2),
+          Min = round(min(grp, na.rm = TRUE), 2),
+          Max = round(max(grp, na.rm = TRUE), 2),
+          Median = round(median(grp, na.rm = TRUE), 2)
+        )
+      }))
+    }
+  }, striped = TRUE, hover = TRUE, width = "100%")
+}
+
+shinyApp(ui, server)</code></pre>
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

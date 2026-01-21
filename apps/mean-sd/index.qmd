@@ -3,6 +3,7 @@ title: "Mean & SD Explorer"
 format: html
 ---
 
+:::{.column-screen-inset}
 ```{shinylive-r}
 #| standalone: true
 #| viewerHeight: 650
@@ -141,3 +142,4 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+:::

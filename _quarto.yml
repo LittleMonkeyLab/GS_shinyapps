@@ -17,6 +17,8 @@ website:
             text: Sliders Demo
           - href: apps/mean-sd/index.qmd
             text: Mean & SD Explorer
+          - href: apps/data-explorer/index.qmd
+            text: Data Explorer
       - text: Slides
         menu:
           - text: (Coming soon)

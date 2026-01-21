@@ -3,6 +3,7 @@ title: "Sliders Demo"
 format: html
 ---
 
+:::{.column-screen-inset}
 ```{shinylive-r}
 #| standalone: true
 #| viewerHeight: 600
@@ -111,3 +112,4 @@ server <- function(input, output) {
 # Create Shiny app ----
 shinyApp(ui, server)
 ```
+:::

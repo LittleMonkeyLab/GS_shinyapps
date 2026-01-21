@@ -29,6 +29,16 @@ Enter a target mean and standard deviation to see what 5 or 10 data points with 
 :::
 :::
 
+::: {.g-col-12 .g-col-md-6 .g-col-lg-4}
+::: {.card}
+### Data Explorer
+
+Explore an embedded dataset with interactive plots and summary statistics. View data tables, scatter plots, box plots, and grouped summaries.
+
+[Launch App](apps/data-explorer/index.qmd){.btn .btn-primary}
+:::
+:::
+
 :::
 
 ## Lecture Slides
